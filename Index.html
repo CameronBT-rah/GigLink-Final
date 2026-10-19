@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GigLink - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js"></script>
+    <script>requireLogin();</script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="top-nav-container">
+        <h1>GigLink</h1>
+        <button class="hamburger" onclick="toggleNav()" aria-label="Toggle navigation">&#9776;</button>
+        <ul id="navLinks">
+            <li><a href="Index.html" class="active">Home</a></li>
+            <li><a href="My Profile.html">My Profile</a></li>
+            <li><a href="Availability.html">Availability</a></li>
+            <li><a href="Bookings.html">Bookings</a></li>
+            <li><a href="Venue.html">Venue</a></li>
+        </ul>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-wrapper">
+
+        <div class="session-bar">
+            <span class="welcome" id="welcomeMsg"></span>
+            <a id="logoutBtn" onclick="logout()">Log Out</a>
+        </div>
+
+        <!-- Hero -->
+        <section class="hero">
+            <h2>Welcome to GigLink</h2>
+            <p class="subtitle">
+                The platform connecting local musicians, bands, and performers with great live music venues —
+                find your next gig, or find your next act, in a few clicks. No agents, no guesswork — just
+                performers and venues finding each other directly.
+            </p>
+            <div class="hero-actions">
+                <a href="Venue.html"><button class="cta-btn primary">Browse Venues</button></a>
+                <a href="My Profile.html"><button class="cta-btn secondary">View My Profile</button></a>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="features">
+            <div class="feature-card">
+                <h3>For Performers</h3>
+                <p>Build a profile, set your availability, and get discovered by venues looking for live talent.</p>
+            </div>
+            <div class="feature-card">
+                <h3>For Venues</h3>
+                <p>Browse performers by genre and availability, then book with confidence.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Effortless Booking</h3>
+                <p>Manage every gig — requests, confirmations, and schedules — from a single dashboard.</p>
+            </div>
+        </section>
+
+        <section class="section-block" style="text-align:center; margin-top: 10px;">
+            <h3>Why musicians and venues choose GigLink</h3>
+            <p style="color: var(--text-muted); max-width: 640px; margin: 0 auto;">
+                Booking live music shouldn't take a dozen phone calls and a spreadsheet. GigLink keeps your
+                profile, availability, and gig history in one place, so both sides of every booking know
+                exactly where things stand.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h4>GigLink</h4>
+                <p>Connecting local musicians, bands, and performers with great live music venues — one gig at a time.</p>
+            </div>
+            <div class="footer-links">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="Index.html">Home</a></li>
+                    <li><a href="My Profile.html">My Profile</a></li>
+                    <li><a href="Availability.html">Availability</a></li>
+                    <li><a href="Bookings.html">Bookings</a></li>
+                    <li><a href="Venue.html">Venue</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr class="divider">
+        <p class="footer-copy">&copy; 2026 GigLink. Connecting live entertainment.</p>
+    </footer>
+
+    <script>
+        showWelcome();
+    </script>
+
+</body>
+</html>
