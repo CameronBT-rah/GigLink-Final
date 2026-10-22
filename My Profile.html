@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GigLink - My Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js"></script>
+    <script>requireLogin();</script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="top-nav-container">
+        <h1>GigLink</h1>
+        <button class="hamburger" onclick="toggleNav()" aria-label="Toggle navigation">&#9776;</button>
+        <ul id="navLinks">
+            <li><a href="Index.html">Home</a></li>
+            <li><a href="My Profile.html" class="active">My Profile</a></li>
+            <li><a href="Availability.html">Availability</a></li>
+            <li><a href="Bookings.html">Bookings</a></li>
+            <li><a href="Venue.html">Venue</a></li>
+        </ul>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-wrapper">
+
+        <div class="session-bar">
+            <span class="welcome" id="welcomeMsg"></span>
+            <a id="logoutBtn" onclick="logout()">Log Out</a>
+        </div>
+
+        <div class="page-header">
+            <h2>My Profile</h2>
+            <p>Manage the information venues and other musicians see about you. A complete profile — role, genres,
+               and a short bio — is what gets you noticed when a venue is scanning for talent.</p>
+        </div>
+
+        <div class="section-block">
+            <h3>Profile Details</h3>
+            <div class="profile-card" id="profileView">
+                <div class="profile-avatar-placeholder" id="avatarInitial">?</div>
+                <div class="profile-info">
+                    <h4 id="profileName">Your Name</h4>
+                    <p id="profileRole"></p>
+                    <p id="profileLocation"></p>
+                    <div class="tag-list" id="tagList"></div>
+                </div>
+            </div>
+
+            <!-- Edit form, hidden until "Edit Profile" is clicked -->
+            <form id="editForm" class="profile-card" style="display:none; flex-direction:column; gap:14px;" onsubmit="handleSave(event)">
+                <div class="input-group">
+                    <label for="roleInput">Role</label>
+                    <input type="text" id="roleInput" placeholder="e.g. Lead Vocalist / Guitarist">
+                </div>
+                <div class="input-group">
+                    <label for="locationInput">Location</label>
+                    <input type="text" id="locationInput" placeholder="e.g. Auckland, NZ">
+                </div>
+                <div class="input-group">
+                    <label for="genresInput">Genres (comma separated)</label>
+                    <input type="text" id="genresInput" placeholder="e.g. Indie Rock, Acoustic, Covers">
+                </div>
+                <div class="input-group">
+                    <label for="bioInput">Bio</label>
+                    <input type="text" id="bioInput" placeholder="A short bio about your act">
+                </div>
+                <div>
+                    <button type="submit" class="cta-btn primary">Save Changes</button>
+                    <button type="button" class="cta-btn secondary" onclick="cancelEdit()">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="section-block">
+            <h3>Bio</h3>
+            <p id="profileBio"></p>
+        </div>
+
+        <p>
+            <button class="cta-btn primary" onclick="startEdit()">Edit Profile</button>
+        </p>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h4>GigLink</h4>
+                <p>Connecting local musicians, bands, and performers with great live music venues — one gig at a time.</p>
+            </div>
+            <div class="footer-links">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="Index.html">Home</a></li>
+                    <li><a href="My Profile.html">My Profile</a></li>
+                    <li><a href="Availability.html">Availability</a></li>
+                    <li><a href="Bookings.html">Bookings</a></li>
+                    <li><a href="Venue.html">Venue</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr class="divider">
+        <p class="footer-copy">&copy; 2026 GigLink. Connecting live entertainment.</p>
+    </footer>
+
+    <script>
+        const name = showWelcome();
+        if (name) {
+            document.getElementById("profileName").textContent = name;
+            document.getElementById("avatarInitial").textContent = name.charAt(0).toUpperCase();
+        }
+
+        function renderProfile() {
+            const profile = getProfile();
+            document.getElementById("profileRole").textContent = profile.role;
+            document.getElementById("profileLocation").textContent = profile.location;
+            document.getElementById("profileBio").textContent = profile.bio;
+
+            const tagList = document.getElementById("tagList");
+            tagList.innerHTML = "";
+            profile.genres.forEach(g => {
+                const span = document.createElement("span");
+                span.className = "tag";
+                span.textContent = g;
+                tagList.appendChild(span);
+            });
+        }
+
+        function startEdit() {
+            const profile = getProfile();
+            document.getElementById("roleInput").value = profile.role;
+            document.getElementById("locationInput").value = profile.location;
+            document.getElementById("genresInput").value = profile.genres.join(", ");
+            document.getElementById("bioInput").value = profile.bio;
+
+            document.getElementById("profileView").style.display = "none";
+            document.getElementById("editForm").style.display = "flex";
+        }
+
+        function cancelEdit() {
+            document.getElementById("editForm").style.display = "none";
+            document.getElementById("profileView").style.display = "flex";
+        }
+
+        function handleSave(event) {
+            event.preventDefault();
+            const data = {
+                role: document.getElementById("roleInput").value || "Add your role",
+                location: document.getElementById("locationInput").value || "Add your location",
+                bio: document.getElementById("bioInput").value || "Add a short bio.",
+                genres: document.getElementById("genresInput").value
+                    .split(",").map(g => g.trim()).filter(g => g.length > 0)
+            };
+            if (data.genres.length === 0) data.genres = ["Add a genre"];
+
+            saveProfile(data);
+            renderProfile();
+            cancelEdit();
+        }
+
+        renderProfile();
+    </script>
+
+</body>
+</html>

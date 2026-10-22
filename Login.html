@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GigLink - Log In</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="login-page">
+
+    <div>
+        <div class="login-brand"><span>GigLink</span></div>
+
+        <div class="login-card">
+            <h2>Log in to your account</h2>
+            <p class="login-subtitle">Welcome back — enter your details to continue.</p>
+            <form id="loginForm" onsubmit="validateLogin(event)">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter Username" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter Password" required>
+                    <button type="button" id="toggleBtn" class="toggle-password"
+                        onclick="togglePasswordVisibility()">Show</button>
+                </div>
+
+                <button type="submit" class="submit-btn">Log In</button>
+                <div id="errorMessage" class="error-message">Invalid username or password</div>
+            </form>
+
+            <div class="login-hint">
+                Demo accounts — admin / password123<br>
+                or cameron / giglink2026
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Show/hide password
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const toggleBtn = document.getElementById('toggleBtn');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.textContent = 'Hide';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.textContent = 'Show';
+            }
+        }
+        const accounts = {
+            "admin": "password123",
+            "cameron": "giglink2026"
+        };
+
+        function validateLogin(event) {
+            event.preventDefault();
+
+            const usernameInput = document.getElementById('username').value.trim();
+            const passwordInput = document.getElementById('password').value;
+            const errorDiv = document.getElementById('errorMessage');
+
+            if (accounts.hasOwnProperty(usernameInput) && accounts[usernameInput] === passwordInput) {
+                localStorage.setItem("loggedIn", "true");
+                localStorage.setItem("username", usernameInput);
+                window.location.href = "Index.html";
+            } else {
+                errorDiv.style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+</html>

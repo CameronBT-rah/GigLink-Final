@@ -1,0 +1,881 @@
+/* =====================================================
+   GigLink — stylesheet
+   Blue-led visual identity: deep navy header/footer,
+   bright blue accents and actions, soft blue-tinted
+   page background, white cards.
+   ===================================================== */
+
+:root {
+  --navy: #0f2a4a;
+  --navy-light: #17375f;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #eaf2ff;
+  --text-dark: #1a2238;
+  --text-muted: #5b6b85;
+  --bg-page: #f3f7fd;
+  --bg-card: #ffffff;
+  --border-light: #dde8f7;
+  --success: #16a34a;
+  --success-bg: #e8f8ee;
+  --pending: #b7791f;
+  --pending-bg: #fff6e0;
+  --danger: #dc2626;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-page); /* shows briefly while the image loads */
+  background-image: url("Background.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+/* ===================================================== */
+/* Header / nav                                           */
+/* ===================================================== */
+
+.top-nav-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--navy);
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(15, 42, 74, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 10px;
+}
+
+.top-nav-container h1 {
+  color: #ffffff;
+  margin: 0;
+  padding: 18px 20px;
+  font-size: 24px;
+  letter-spacing: 0.5px;
+}
+
+.top-nav-container ul {
+  list-style-type: none;
+  display: flex;
+}
+
+.top-nav-container ul li a {
+  display: block;
+  color: #cfe0fb;
+  text-align: center;
+  padding: 22px 16px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.top-nav-container ul li a:hover {
+  color: #ffffff;
+  background-color: var(--navy-light);
+}
+
+.top-nav-container ul li a.active {
+  color: #ffffff;
+  border-bottom: 3px solid var(--primary);
+}
+
+.hamburger {
+  display: none;
+  width: auto;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 26px;
+  padding: 10px 20px;
+  cursor: pointer;
+  position: absolute;
+  top: 6px;
+  right: 10px;
+}
+
+.hamburger:hover {
+  background: none;
+  opacity: 0.8;
+}
+
+/* ===================================================== */
+/* Page layout                                             */
+/* ===================================================== */
+
+.content-wrapper {
+  max-width: 1000px;
+  margin: 110px auto 40px;
+  padding: 0 24px;
+}
+
+.session-bar {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  margin-left: auto;
+  margin-bottom: 16px;
+  background-color: rgba(255, 255, 255, 0.55);
+  border-radius: 10px;
+  padding: 8px 16px;
+}
+
+.session-bar span.welcome {
+  font-size: 13px;
+  color: var(--text-dark);
+  font-weight: bold;
+  margin-right: 14px;
+}
+
+.session-bar a {
+  font-size: 13px;
+  color: var(--primary-dark);
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.session-bar a:hover {
+  color: var(--navy);
+}
+
+.page-header {
+  background-color: rgba(255, 255, 255, 0.55);
+  padding: 26px 30px;
+  border-radius: 14px;
+  margin-bottom: 30px;
+}
+
+.page-header h2 {
+  font-size: 30px;
+  color: var(--navy);
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.page-header p {
+  font-size: 15px;
+  color: var(--text-dark);
+  font-weight: 600;
+  max-width: 640px;
+  line-height: 1.6;
+}
+
+.section-block {
+  margin-bottom: 36px;
+}
+
+.section-block h3 {
+  font-size: 19px;
+  color: var(--navy);
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+/* A clean, fully-boxed panel for standalone text that sits on the
+   background image with no card of its own (e.g. the Home page
+   "why choose GigLink" blurb). */
+.text-panel {
+  background-color: rgba(255, 255, 255, 0.55);
+  border-radius: 14px;
+  padding: 28px 30px;
+}
+
+.text-panel h3 {
+  color: var(--navy);
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.text-panel p {
+  color: var(--text-dark);
+  font-weight: 600;
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+hr.divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  margin: 0 0 16px 0;
+}
+
+/* ===================================================== */
+/* Buttons                                                  */
+/* ===================================================== */
+
+button {
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+}
+
+.cta-btn {
+  display: inline-block;
+  width: auto;
+  padding: 13px 28px;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  margin: 0 8px 8px 0;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.cta-btn.primary {
+  background-color: var(--primary);
+  color: #ffffff;
+}
+
+.cta-btn.primary:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+}
+
+.cta-btn.secondary {
+  background-color: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: 11px 26px;
+}
+
+.cta-btn.secondary:hover {
+  background-color: var(--primary);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* ===================================================== */
+/* Hero (Home page)                                        */
+/* ===================================================== */
+
+.hero {
+  text-align: center;
+  padding: 56px 28px;
+  margin-bottom: 36px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--primary-dark) 100%);
+  color: #ffffff;
+}
+
+.hero h2 {
+  font-size: 36px;
+  margin-bottom: 14px;
+}
+
+.hero .subtitle {
+  font-size: 17px;
+  color: #d9e6fb;
+  max-width: 640px;
+  margin: 0 auto 30px;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hero .cta-btn.primary {
+  background-color: #ffffff;
+  color: var(--primary-dark);
+}
+
+.hero .cta-btn.primary:hover {
+  background-color: #eaf2ff;
+}
+
+.hero .cta-btn.secondary {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.hero .cta-btn.secondary:hover {
+  background-color: #ffffff;
+  color: var(--primary-dark);
+}
+
+/* ===================================================== */
+/* Feature cards (Home page)                               */
+/* ===================================================== */
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  padding: 10px 0 10px;
+}
+
+.feature-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-top: 4px solid var(--primary);
+  border-radius: 10px;
+  padding: 28px 24px;
+  max-width: 280px;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(15, 42, 74, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(15, 42, 74, 0.1);
+}
+
+.feature-card h3 {
+  font-size: 18px;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+.feature-card p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ===================================================== */
+/* My Profile                                              */
+/* ===================================================== */
+
+.profile-card {
+  display: flex;
+  gap: 24px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 26px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 14px rgba(15, 42, 74, 0.06);
+}
+
+.profile-avatar-placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--navy) 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.profile-info h4 {
+  font-size: 19px;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.profile-info p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.tag-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.tag {
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px 12px;
+  border-radius: 12px;
+}
+
+.input-group {
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.input-group label {
+  display: block;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+.input-group input[type="text"],
+.input-group input[type="password"] {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ===================================================== */
+/* Availability                                             */
+/* ===================================================== */
+
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  max-width: 580px;
+  margin-bottom: 14px;
+}
+
+.week-grid .day-label {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: bold;
+}
+
+.week-grid .day-cell {
+  height: 54px;
+  border-radius: 8px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: #a6b4c9;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.week-grid .day-cell:hover {
+  transform: translateY(-1px);
+  border-color: var(--primary);
+}
+
+.week-grid .day-cell.available {
+  background-color: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary-dark);
+  font-weight: bold;
+}
+
+.legend {
+  display: flex;
+  gap: 18px;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.legend-dot.available { background-color: var(--primary); }
+.legend-dot.unavailable { background-color: #ccd6e5; }
+
+/* ===================================================== */
+/* Bookings                                                 */
+/* ===================================================== */
+
+.bookings-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(15, 42, 74, 0.06);
+}
+
+.bookings-table th {
+  text-align: left;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  padding: 14px 16px;
+  background-color: var(--primary-light);
+  border-bottom: 2px solid var(--border-light);
+}
+
+.bookings-table td {
+  padding: 15px 16px;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+.bookings-table tr:last-child td {
+  border-bottom: none;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status-badge.confirmed {
+  background-color: var(--success-bg);
+  color: var(--success);
+}
+
+.status-badge.pending {
+  background-color: var(--pending-bg);
+  color: var(--pending);
+}
+
+/* ===================================================== */
+/* Venue                                                    */
+/* ===================================================== */
+
+.venue-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.venue-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 4px 14px rgba(15, 42, 74, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.venue-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(15, 42, 74, 0.1);
+}
+
+.venue-card h4 {
+  font-size: 17px;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.venue-card .venue-location {
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.venue-card p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+/* ===================================================== */
+/* Footer                                                   */
+/* ===================================================== */
+
+.site-footer {
+  background-color: var(--navy);
+  color: #cfe0fb;
+  margin-top: 50px;
+  padding: 40px 24px 24px;
+}
+
+.footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+  padding-bottom: 24px;
+}
+
+.footer-brand h4 {
+  color: #ffffff;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.footer-brand p {
+  font-size: 13px;
+  color: #a9c0e5;
+  max-width: 280px;
+  line-height: 1.6;
+}
+
+.footer-links h5 {
+  color: #ffffff;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.footer-links ul {
+  list-style: none;
+}
+
+.footer-links ul li {
+  margin-bottom: 8px;
+}
+
+.footer-links ul li a {
+  color: #a9c0e5;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.footer-links ul li a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.site-footer .divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  max-width: 1000px;
+  margin: 0 auto 16px;
+}
+
+.footer-copy {
+  max-width: 1000px;
+  margin: 0 auto;
+  font-size: 12px;
+  color: #8fa9d4;
+}
+
+/* ===================================================== */
+/* Login page                                               */
+/* ===================================================== */
+
+body.login-page {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--primary-dark) 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-brand {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-brand span {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.login-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 36px 32px;
+  width: 340px;
+  box-shadow: 0 16px 40px rgba(5, 15, 35, 0.35);
+}
+
+.login-card h2 {
+  font-size: 20px;
+  color: var(--navy);
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.login-card .login-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 6px;
+  top: 29px;
+  width: auto;
+  background: none;
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: bold;
+  padding: 6px 8px;
+  border: none;
+}
+
+.toggle-password:hover {
+  background: none;
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.submit-btn {
+  width: 100%;
+  background-color: var(--primary);
+  color: #ffffff;
+  padding: 13px;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background-color 0.15s ease;
+}
+
+.submit-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+.error-message {
+  display: none;
+  color: var(--danger);
+  font-size: 13px;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.login-hint {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-light);
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* ===================================================== */
+/* Responsive breakpoints                                  */
+/* ===================================================== */
+
+@media screen and (max-width: 900px) {
+  .features,
+  .venue-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .profile-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .top-nav-container ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .top-nav-container ul.open {
+    display: flex;
+  }
+
+  .top-nav-container ul li a {
+    padding: 14px 20px;
+    border-top: 1px solid var(--navy-light);
+    border-bottom: none;
+  }
+
+  .top-nav-container ul li a.active {
+    border-bottom: none;
+    background-color: var(--navy-light);
+  }
+
+  .content-wrapper {
+    margin-top: 120px;
+    padding: 0 16px;
+  }
+
+  .hero {
+    padding: 40px 20px;
+  }
+
+  .hero h2 {
+    font-size: 26px;
+  }
+
+  .features,
+  .venue-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .week-grid {
+    grid-template-columns: repeat(7, minmax(32px, 1fr));
+    gap: 4px;
+  }
+
+  .bookings-table {
+    font-size: 13px;
+  }
+
+  .bookings-table th,
+  .bookings-table td {
+    padding: 10px 8px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .login-card {
+    width: 90vw;
+    padding: 28px 20px;
+  }
+
+  .top-nav-container h1 {
+    font-size: 20px;
+    padding: 16px 14px;
+  }
+}

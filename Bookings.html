@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GigLink - Bookings</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js"></script>
+    <script>requireLogin();</script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="top-nav-container">
+        <h1>GigLink</h1>
+        <button class="hamburger" onclick="toggleNav()" aria-label="Toggle navigation">&#9776;</button>
+        <ul id="navLinks">
+            <li><a href="Index.html">Home</a></li>
+            <li><a href="My Profile.html">My Profile</a></li>
+            <li><a href="Availability.html">Availability</a></li>
+            <li><a href="Bookings.html" class="active">Bookings</a></li>
+            <li><a href="Venue.html">Venue</a></li>
+        </ul>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-wrapper">
+
+        <div class="session-bar">
+            <span class="welcome" id="welcomeMsg"></span>
+            <a id="logoutBtn" onclick="logout()">Log Out</a>
+        </div>
+
+        <div class="page-header">
+            <h2>Bookings</h2>
+            <p>Track your upcoming and past gigs in one place. A <strong>Pending</strong> booking means the venue
+               hasn't confirmed yet — once they do, it'll switch to <strong>Confirmed</strong>.</p>
+        </div>
+
+        <div class="section-block">
+            <h3>Your Bookings</h3>
+            <table class="bookings-table">
+                <thead>
+                    <tr>
+                        <th>Venue</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="bookingsBody">
+                    <!-- rows rendered by JS -->
+                </tbody>
+            </table>
+            <p id="emptyMsg" style="display:none; color:#888; font-size:14px;">
+                No bookings yet — browse venues and request a booking to see it here.
+            </p>
+        </div>
+
+        <p>
+            <a href="Venue.html"><button class="cta-btn primary">Find a Venue</button></a>
+        </p>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h4>GigLink</h4>
+                <p>Connecting local musicians, bands, and performers with great live music venues — one gig at a time.</p>
+            </div>
+            <div class="footer-links">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="Index.html">Home</a></li>
+                    <li><a href="My Profile.html">My Profile</a></li>
+                    <li><a href="Availability.html">Availability</a></li>
+                    <li><a href="Bookings.html">Bookings</a></li>
+                    <li><a href="Venue.html">Venue</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr class="divider">
+        <p class="footer-copy">&copy; 2026 GigLink. Connecting live entertainment.</p>
+    </footer>
+
+    <script>
+        showWelcome();
+
+        function renderBookings() {
+            const bookings = getBookings();
+            const body = document.getElementById("bookingsBody");
+            const emptyMsg = document.getElementById("emptyMsg");
+            body.innerHTML = "";
+
+            if (bookings.length === 0) {
+                emptyMsg.style.display = "block";
+                return;
+            }
+            emptyMsg.style.display = "none";
+
+            bookings.forEach((b, index) => {
+                const row = document.createElement("tr");
+
+                const statusClass = b.status === "Confirmed" ? "confirmed" : "pending";
+
+                row.innerHTML = `
+                    <td>${b.venue}</td>
+                    <td>${b.date}</td>
+                    <td><span class="status-badge ${statusClass}">${b.status}</span></td>
+                    <td><a onclick="handleRemove(${index})" style="color:#f44336; cursor:pointer; font-size:13px;">Cancel</a></td>
+                `;
+                body.appendChild(row);
+            });
+        }
+
+        function handleRemove(index) {
+            removeBooking(index);
+            renderBookings();
+        }
+
+        renderBookings();
+    </script>
+
+</body>
+</html>

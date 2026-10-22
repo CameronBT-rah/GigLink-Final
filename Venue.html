@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GigLink - Venue</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js"></script>
+    <script>requireLogin();</script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="top-nav-container">
+        <h1>GigLink</h1>
+        <button class="hamburger" onclick="toggleNav()" aria-label="Toggle navigation">&#9776;</button>
+        <ul id="navLinks">
+            <li><a href="Index.html">Home</a></li>
+            <li><a href="My Profile.html">My Profile</a></li>
+            <li><a href="Availability.html">Availability</a></li>
+            <li><a href="Bookings.html">Bookings</a></li>
+            <li><a href="Venue.html" class="active">Venue</a></li>
+        </ul>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-wrapper">
+
+        <div class="session-bar">
+            <span class="welcome" id="welcomeMsg"></span>
+            <a id="logoutBtn" onclick="logout()">Log Out</a>
+        </div>
+
+        <div class="page-header">
+            <h2>Browse Venues</h2>
+            <p>Find great live music venues looking for talent like you. Requesting a booking adds it to your
+               Bookings page, where you can track it through to confirmation.</p>
+        </div>
+
+        <div class="section-block">
+            <h3>Available Venues</h3>
+            <div class="venue-grid">
+                <div class="venue-card">
+                    <h4>The Grey Lynn Lounge</h4>
+                    <div class="venue-location">Grey Lynn, Auckland</div>
+                    <p>Intimate 80-cap venue looking for acoustic and indie acts on weeknights.</p>
+                    <button class="cta-btn secondary" onclick="handleRequest('The Grey Lynn Lounge', this)">Request Booking</button>
+                </div>
+                <div class="venue-card">
+                    <h4>Ponsonby Social Club</h4>
+                    <div class="venue-location">Ponsonby, Auckland</div>
+                    <p>Bar and live venue seeking cover bands for Friday and Saturday nights.</p>
+                    <button class="cta-btn secondary" onclick="handleRequest('Ponsonby Social Club', this)">Request Booking</button>
+                </div>
+                <div class="venue-card">
+                    <h4>Britomart Live House</h4>
+                    <div class="venue-location">Britomart, Auckland</div>
+                    <p>Mid-size venue with a full PA, open to original and cover sets alike.</p>
+                    <button class="cta-btn secondary" onclick="handleRequest('Britomart Live House', this)">Request Booking</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h4>GigLink</h4>
+                <p>Connecting local musicians, bands, and performers with great live music venues — one gig at a time.</p>
+            </div>
+            <div class="footer-links">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="Index.html">Home</a></li>
+                    <li><a href="My Profile.html">My Profile</a></li>
+                    <li><a href="Availability.html">Availability</a></li>
+                    <li><a href="Bookings.html">Bookings</a></li>
+                    <li><a href="Venue.html">Venue</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr class="divider">
+        <p class="footer-copy">&copy; 2026 GigLink. Connecting live entertainment.</p>
+    </footer>
+
+    <script>
+        showWelcome();
+
+        function handleRequest(venueName, btn) {
+            addBooking(venueName);
+            btn.textContent = "Requested ✓";
+            btn.disabled = true;
+            setTimeout(() => { window.location.href = "Bookings.html"; }, 600);
+        }
+    </script>
+
+</body>
+</html>
